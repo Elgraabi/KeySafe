@@ -4,5 +4,4 @@ export const theme = {
         text: "#0B1B39",
         icon: "#022971",
     }
-
 }
