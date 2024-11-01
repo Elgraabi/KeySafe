@@ -92,5 +92,5 @@ Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em c
 - **Nome**: Gabriel Silva Oliveira
 - **Email**: silvatdb8@gmail.com
 - **Nome**: Henrique Silva
-- **Email**: ********
+- **Email**: henrsilvasantos@gmail.com
 ```
