@@ -40,10 +40,19 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     register: {
-
+        borderColor: "#124dbc",
+        backgroundColor: "#FFFFFF",
+        color: "#124dbc",
+        fontWeight: "bold",
+        textTransform: "none",
     },
     confirm: {
         backgroundColor: "#124DBC",
+    },
+    cancel: {
+        backgroundColor: "#124DBC",
+        textTransform: "none",
+        borderRadius: 8,
     }
 });
 
