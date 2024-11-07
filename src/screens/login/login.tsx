@@ -23,6 +23,7 @@ export default function Login() {
             <ButtonSelect/>
             <Button title="Entrar" className="enter" />
             <Button title="Esqueceu sua senha?" className="forgotYourPassword"/>
+            <Button title="Cadastrar" className="register"/>
         </View>
     )
 }

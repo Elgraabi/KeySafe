@@ -33,10 +33,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#124DBC",
     },
     forgotYourPassword: {
-        
+
     },
     forgotText: {
         color: "black",
+        fontWeight: "bold",
+    },
+    register: {
+
     }
 });
 
