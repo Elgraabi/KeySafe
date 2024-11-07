@@ -20,7 +20,9 @@ export default function RecoverPassword() {
             <Input title="Usuário" iconName="user"></Input>
             <Input title="Senha" iconName="lock"></Input>
             <Input title="Confirma senha" iconName="lock"></Input>
-            <Button title="Confirmar" className="confirm" />
+            <View style={styles.view}>
+                <Button title="Confirmar" className="confirm" />
+            </View>
         </View>
     )
 }

@@ -24,6 +24,11 @@ const styles = StyleSheet.create({
         textAlign: 'center', 
         marginBottom: 20,
     },
+    view: {
+        height: "100%",
+        width: "90%",
+        paddingTop: 40,
+    }
 });
 
 export default styles;
