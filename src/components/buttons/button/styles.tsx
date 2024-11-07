@@ -41,6 +41,9 @@ const styles = StyleSheet.create({
     },
     register: {
 
+    },
+    confirm: {
+        backgroundColor: "#124DBC",
     }
 });
 

@@ -2,10 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import Welcome from './src/screens/welcome/welcome';
 import Login from './src/screens/login/login';
+import RecoverPassword from './src/screens/recoverPassword';
 
 export default function App() {
   return (
-      <Login/>
+      <RecoverPassword/>
   );
 }
 

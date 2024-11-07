@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacityProps, TouchableOpacity } from "react-nativ
 import styles from "./styles";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-type StyleKeys = 'loading' | 'return' | 'enter' | 'forgotYourPassword' | 'register';
+type StyleKeys = 'loading' | 'return' | 'enter' | 'forgotYourPassword' | 'register' | 'confirm';
 
 type ButtonProps = TouchableOpacityProps & {
     title?: string;
