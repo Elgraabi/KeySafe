@@ -1,30 +1,43 @@
+import React from "react";
 import { Image, Text, View } from "react-native";
 import Input from "../../components/inputs/input";
 import styles from "./styles";
 import ButtonCircle from "../../components/buttons/buttonCircle";
 import ButtonSelect from "../../components/buttons/buttonSelect";
 import Button from "../../components/buttons/button";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RoutesParams } from "../../navigation/routesParams";
+import { useNavigation } from "@react-navigation/native";
 
-export default function Login() {
+type LoginParamsList = NativeStackNavigationProp<RoutesParams, "Login">;
+
+export default function LoginScreen() {
+    const navigation = useNavigation<LoginParamsList>();
+
     return (
         <View style={styles.container}>
-            <Image style={styles.image}
+            <Image
+                style={styles.image}
                 source={require("../../../assets/imagens/logo.png")}
             />
-            <Text style={styles.textTitle}>
-                KeySafe
-            </Text>
-            <Text style={styles.textTitle}>
-                Login
-            </Text>
-            <ButtonCircle className="return" iconName="arrow-left"/>
-            <Input title="Usuário" iconName="user"></Input>
-            <Input title="Senha" iconName="lock"></Input>
-            <ButtonSelect/>
-            <Button title="Entrar" className="enter" />
-            <Button title="Esqueceu sua senha?" className="forgotYourPassword"/>
-            <Button title="Cadastrar" className="register"/>
-        </View>
-    )
-}
 
+            <Text style={styles.textTitle}>KeySafe</Text>
+            <Text style={styles.textTitle}>Login</Text>
+
+            <ButtonCircle className="return" iconName="arrow-left" />
+
+            <Input title="Usuário" iconName="user" />
+            <Input title="Senha" iconName="lock" secureTextEntry={true} />
+
+            <ButtonSelect />
+
+            <Button title="Entrar" className="enter" onPress={() => console.log("Login realizado")} />
+            <Button
+                title="Esqueceu sua senha?"
+                className="forgotYourPassword"
+                onPress={() => navigation.navigate("RecoverPassword")}
+            />
+            <Button title="Cadastrar" className="register" onPress={() => navigation.navigate("RegisterUser")} />
+        </View>
+    );
+}

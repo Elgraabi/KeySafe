@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "KeySafe",
-    "slug": "KeySafe",
+    "name": "safe-key",
+    "slug": "safe-key",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,7 +15,6 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.seudominio.keysafe",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -23,6 +22,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
