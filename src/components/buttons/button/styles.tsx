@@ -40,11 +40,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     register: {
-        borderColor: "#124dbc",
-        backgroundColor: "#FFFFFF",
-        color: "#124dbc",
-        fontWeight: "bold",
-        textTransform: "none",
+        
     },
     confirm: {
         backgroundColor: "#124DBC",
@@ -53,6 +49,16 @@ const styles = StyleSheet.create({
         backgroundColor: "#124DBC",
         textTransform: "none",
         borderRadius: 8,
+    },
+    registerUser: {
+        borderColor: "#124DBC",
+        backgroundColor: "#FFFFFF",
+        fontWeight: "bold",
+        textTransform: "none",
+    },
+    registerUserText: {
+        color: "#124DBC",
+        fontWeight: "bold",
     }
 });
 

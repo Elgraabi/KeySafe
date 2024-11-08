@@ -1,9 +1,8 @@
 import { View, Text, TouchableOpacityProps, TouchableOpacity } from "react-native";
 import styles from "./styles";
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 type StyleKeys = 'loading' | 'return' | 'enter' 
-| 'forgotYourPassword' | 'register' | 'confirm' | 'cancel';
+| 'forgotYourPassword' | 'register' | 'confirm' | 'cancel' | 'registerUser';
 
 type ButtonProps = TouchableOpacityProps & {
     title?: string;
@@ -17,6 +16,8 @@ export default function Button({ title, className, ...rest }: ButtonProps) {
         styleText = { ...styles.forgotText };
     } else if (className === 'register') {
         styleText = { ...styles.forgotText };
+    } else if (className === 'registerUser') {
+        styleText = { ...styles.registerUserText };
     } else {
         styleText = { ...styles.buttonText };
     }

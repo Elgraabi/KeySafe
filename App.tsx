@@ -7,7 +7,7 @@ import RegisterUser from './src/screens/registerUser';
 
 export default function App() {
   return (
-      <RegisterUser/>
+      <Welcome/>
   );
 }
 

@@ -14,7 +14,7 @@ export default function RegisterUser() {
                 KeySafe
             </Text>
             <Text style={styles.textTitle}>
-                Recuperar Senha
+                Cadastrar Usuário
             </Text>
             <ButtonCircle className="return" iconName="arrow-left"/>
             <Input title="Nome" iconName="address-card"></Input>
@@ -23,7 +23,7 @@ export default function RegisterUser() {
             <Input title="Confirma senha" iconName="lock"></Input>
             <View style={styles.view}>
                 <Button title="Cancelar" className="cancel" />
-                <Button title="Cadastrar" className="register" />
+                <Button title="Cadastrar" className="registerUser" />
             </View>
         </View>
     )
