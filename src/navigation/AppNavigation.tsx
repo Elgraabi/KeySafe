@@ -21,6 +21,8 @@ export default function AppNavigation() {
                 <Stack.Screen name="RegisterUser" component={RegisterUserScreen} />
 
                 <Stack.Screen name="Welcome" component={WelcomeScreen} />
+
+                <Stack.Screen name="PasswordDetails" component={WelcomeScreen} />
                 
             </Stack.Navigator>
         </NavigationContainer>
