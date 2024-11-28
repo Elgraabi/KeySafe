@@ -62,7 +62,7 @@ Contribuições são bem-vindas! Se você deseja contribuir para o projeto, siga
 
 1. Fork o repositório.
 2. Crie uma nova branch para suas alterações:
-   
+
    ```bash
    git checkout -b feature/nome-da-sua-feature
    ```
@@ -92,5 +92,8 @@ Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em c
 - **Nome**: Gabriel Silva Oliveira
 - **Email**: silvatdb8@gmail.com
 - **Nome**: Henrique Silva
-- **Email**: ********
+- **Email**: henrsilvasantos@gmail.com
+
+```
+
 ```
