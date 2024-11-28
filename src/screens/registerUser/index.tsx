@@ -2,7 +2,6 @@ import React from "react";
 import { Image, Text, View } from "react-native";
 import Input from "../../components/inputs/input";
 import styles from "./styles";
-import ButtonCircle from "../../components/buttons/buttonCircle";
 import Button from "../../components/buttons/button";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -20,14 +19,10 @@ export default function RegisterUserScreen() {
                 source={require("../../../assets/imagens/logo.png")}
             />
 
-            <Text style={styles.textTitle}>KeySafe</Text>
-            <Text style={styles.textTitle}>Cadastrar Usuário</Text>
-
-            <ButtonCircle
-                className="return"
-                iconName="arrow-left"
-                onPress={() => navigation.goBack()}
-            />
+            <View style={{marginBottom: 30, alignItems: "center"}}>
+                <Text style={styles.textTitle}>KeySafe</Text>
+                <Text style={styles.textTitle}>Cadastrar Usuário</Text>
+            </View>
 
             <Input title="Nome" iconName="address-card" />
             <Input title="Usuário" iconName="user" />
