@@ -23,9 +23,11 @@ export default function RecoverPasswordScreen() {
             />
 
             {/* Títulos da tela */}
-            <Text style={styles.textTitle}>KeySafe</Text>
-            <Text style={styles.textTitle}>Recuperar Senha</Text>
-
+            <View style={styles.viewText}>
+                <Text style={styles.textTitle}>KeySafe</Text>
+                <Text style={styles.textTitle}>Recuperar Senha</Text>
+            </View>
+            
             {/* Botão de retorno */}
             <ButtonCircle
                 className="return"

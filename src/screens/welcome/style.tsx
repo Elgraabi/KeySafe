@@ -24,6 +24,10 @@ const styles = StyleSheet.create({
         textAlign: 'center', // centralizar o texto
         marginBottom: 20,
     },
+    viewText: {
+        marginBottom: 30, 
+        alignItems: "center"
+    }
 });
 
 export default styles;

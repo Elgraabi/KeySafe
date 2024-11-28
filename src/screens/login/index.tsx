@@ -21,17 +21,19 @@ export default function LoginScreen() {
                 source={require("../../../assets/imagens/logo.png")}
             />
 
-            <Text style={styles.textTitle}>KeySafe</Text>
-            <Text style={styles.textTitle}>Login</Text>
+            <View style={styles.viewText}>
+                <Text style={styles.textTitle}>KeySafe</Text>
+                <Text style={styles.textTitle}>Login</Text>
+            </View>
 
-            <ButtonCircle className="return" iconName="arrow-left" />
+            <ButtonCircle className="return" iconName="arrow-left" onPress={() => navigation.navigate("Welcome")}/>
 
             <Input title="Usuário" iconName="user" />
             <Input title="Senha" iconName="lock" secureTextEntry={true} />
 
             <ButtonSelect />
 
-            <Button title="Entrar" className="enter" onPress={() => console.log("Login realizado")} />
+            <Button title="Entrar" className="enter" onPress={() => navigation.navigate("DashBoard")} />
             <Button
                 title="Esqueceu sua senha?"
                 className="forgotYourPassword"

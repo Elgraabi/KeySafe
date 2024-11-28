@@ -7,5 +7,8 @@ export type RoutesParams = {
     RegisterUser: undefined;
 
     Welcome: undefined;
+
+    DashBoard: undefined;
+
 };
 

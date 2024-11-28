@@ -28,6 +28,10 @@ const styles = StyleSheet.create({
         height: "100%",
         width: "90%",
         paddingTop: 40,
+    },
+    viewText: {
+        marginBottom: 30, 
+        alignItems: "center"
     }
 });
 
