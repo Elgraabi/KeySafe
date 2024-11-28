@@ -15,9 +15,11 @@ export default function WelcomeScreen() {
         <View style={styles.container}>
             <Image style={styles.image} source={require("../../../assets/imagens/logo.png")} />
 
-            <Text style={styles.textTitle}>Hello!</Text>
-            <Text style={styles.textP}>Seja bem-vindo ao KeySafe</Text>
-
+            <View style={styles.viewText}>
+                <Text style={styles.textTitle}>Hello!</Text>
+                <Text style={styles.textP}>Seja bem-vindo ao KeySafe</Text>
+            </View>
+            
             <Button
                 title="Login"
                 className="loading"
