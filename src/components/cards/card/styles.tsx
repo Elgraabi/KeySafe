@@ -44,15 +44,7 @@ const styles = StyleSheet.create({
     color: "#274BDB",
   },
   inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
     width: "100%",
-    marginBottom: 15,
-    backgroundColor: "#F9FAFB",
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    borderColor: "#E5E7EB",
-    borderWidth: 1,
   },
   input: {
     flex: 1,
@@ -61,10 +53,7 @@ const styles = StyleSheet.create({
     color: "#6B7280",
   },
   buttonRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 20,
-    width: "100%",
+    marginRight: 100, marginLeft: 100, flexDirection: "row", justifyContent: "space-between" 
   },
   saveButton: {
     flex: 1,
@@ -73,11 +62,6 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     alignItems: "center",
-  },
-  saveButtonText: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 16,
   },
   deleteButton: {
     flex: 1,
