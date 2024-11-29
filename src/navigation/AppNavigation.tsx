@@ -6,6 +6,7 @@ import RecoverPasswordScreen from "../screens/recoverPassword";
 import RegisterUserScreen from "../screens/registerUser";
 import WelcomeScreen from "../screens/welcome";
 import DashBoardScreen from "../screens/dashBoard";
+import EditProfileScreen from "../screens/editProfile";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,8 @@ export default function AppNavigation() {
                 <Stack.Screen name="Welcome" component={WelcomeScreen} />
 
                 <Stack.Screen name="DashBoard" component={DashBoardScreen} />
+
+                <Stack.Screen name="EditProfile" component={EditProfileScreen} />
                 
             </Stack.Navigator>
         </NavigationContainer>
