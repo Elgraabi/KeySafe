@@ -10,5 +10,6 @@ export type RoutesParams = {
 
     DashBoard: undefined;
 
+    EditProfile: undefined;
 };
 
