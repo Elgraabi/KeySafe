@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacityProps, TouchableOpacity } from "react-nativ
 import styles from "./styles";
 
 type StyleKeys = 'loading' | 'return' | 'enter' 
-| 'forgotYourPassword' | 'register' | 'confirm' | 'cancel' | 'registerUser';
+| 'forgotYourPassword' | 'register' | 'confirm' | 'cancel' | 'registerUser' | 'save' | 'delet';
 
 type ButtonProps = TouchableOpacityProps & {
     title?: string;
@@ -18,6 +18,10 @@ export default function Button({ title, className, ...rest }: ButtonProps) {
         styleText = { ...styles.forgotText };
     } else if (className === 'registerUser') {
         styleText = { ...styles.registerUserText };
+    } else if (className === 'save') {
+        styleText = { ...styles.saveButtonText };
+    } else if (className === 'delet') {
+        styleText = { ...styles.deletButtonText };
     } else {
         styleText = { ...styles.buttonText };
     }
