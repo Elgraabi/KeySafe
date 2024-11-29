@@ -35,6 +35,16 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    logout: {
+        width: 55,
+        height: 54,
+        top: 0,
+        left: 0,
+        backgroundColor: "#C3171A",
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });
 
