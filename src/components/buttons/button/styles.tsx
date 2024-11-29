@@ -22,10 +22,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#124DBC",
     },
     return: {
-        backgroundColor: "blue", 
+        backgroundColor: "blue",
         width: 40,
         height: 40,
-        borderRadius: 30, 
+        borderRadius: 30,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     register: {
-        
+
     },
     confirm: {
         backgroundColor: "#124DBC",
@@ -59,7 +59,23 @@ const styles = StyleSheet.create({
     registerUserText: {
         color: "#124DBC",
         fontWeight: "bold",
-    }
+    },
+    save: {
+        color: "#124DBC",
+        fontWeight: "bold",
+    },
+    saveButtonText: {
+        fontWeight: "bold",
+        fontSize: 16,
+    },
+    delet: {
+        fontWeight: "bold",
+        fontSize: 16,
+    },
+    deletButtonText: {
+        fontWeight: "bold",
+        fontSize: 16,
+    },
 });
 
 export default styles;
