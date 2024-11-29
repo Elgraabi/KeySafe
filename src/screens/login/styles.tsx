@@ -4,8 +4,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        paddingTop: 50,
+        paddingTop: 70,
         backgroundColor: '#87CEFA',
+        paddingBottom: 50,
     },
     image: {
         width: 100, 
