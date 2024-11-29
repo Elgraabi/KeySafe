@@ -2,7 +2,7 @@ import { TouchableOpacity, TouchableOpacityProps, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import styles from "./styles";
 
-type StyleKeys = 'return' | 'addKeys' | 'profile';
+type StyleKeys = 'return' | 'addKeys' | 'profile' | 'logout';
 
 type ButtonProps = TouchableOpacityProps & {
     iconName?: string;
