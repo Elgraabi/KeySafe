@@ -14,6 +14,27 @@ const styles = StyleSheet.create({
         borderRadius: 30, 
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    addKeys: {
+        width: 55,
+        height: 54,
+        position: "absolute", 
+        top: 0,
+        left: 0,
+        backgroundColor: "#0a1e44",
+        borderRadius: 27,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    profile: {
+        width: 55,
+        height: 54,
+        top: 0,
+        left: 0,
+        backgroundColor: "#0A1F44",
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });
 

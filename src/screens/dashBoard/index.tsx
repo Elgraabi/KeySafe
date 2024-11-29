@@ -6,6 +6,7 @@ import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
 import keys from "../../mock/keys";
 import Card from "../../components/cards/card";
+import ButtonCircle from "../../components/buttons/buttonCircle";
 
 type DashBoardParamsList = NativeStackNavigationProp<RoutesParams, "DashBoard">;
 
@@ -14,6 +15,14 @@ export default function DashBoardScreen() {
 
     return (
         <View style={styles.container}>
+            <View style={styles.profileButton}>
+                <ButtonCircle
+                    className="profile"
+                    iconName="user" // Ícone de perfil
+                    onPress={() => console.log("Ir para o perfil")} // Substitua pela navegação ou lógica desejada
+                />
+            </View>
+
             <Image
                 style={styles.image}
                 source={require("../../../assets/imagens/logo.png")}
@@ -30,20 +39,26 @@ export default function DashBoardScreen() {
             </Text>
 
             <View style={styles.container}>
-            <FlatList
+                <FlatList
                     data={keys}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({ item }) => (
                         <View id={item.id.toString()}>
-                            <Card 
+                            <Card
                                 data={{
-                                       ...item, 
-                                        id: item.id.toString()}} 
+                                    ...item,
+                                    id: item.id.toString()
+                                }}
                             />
                         </View>
 
                     )}
                 />
+                <View style={styles.floatingButton}>
+                    <ButtonCircle className="addKeys" iconName="plus">
+
+                    </ButtonCircle>
+                </View>
             </View>
         </View>
     );

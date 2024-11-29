@@ -3,6 +3,8 @@ import { Modal, Pressable, Text, TextInput, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import styles from "./styles";
 import ButtonCircle from "../../buttons/buttonCircle";
+import InputModal from "../../inputs/inputModal";
+import Button from "../../buttons/button";
 
 type Data = {
     title: string;
@@ -37,7 +39,7 @@ export default function Card({ data }: CardProps) {
             >
                 <View style={styles.modalOverlay}>
                     <View style={styles.modalContainer}>
-                        <View style={{alignItems: "center", flexDirection: "row", margin: 30, marginRight: 130}}>
+                        <View style={{ alignItems: "center", flexDirection: "row", margin: 30, marginRight: 130 }}>
                             <ButtonCircle
                                 className="return"
                                 iconName="arrow-left"
@@ -48,30 +50,23 @@ export default function Card({ data }: CardProps) {
 
                         {/* Input para o título */}
                         <View style={styles.inputContainer}>
-                            <TextInput style={styles.input} defaultValue={data.title} />
-                            <FontAwesome name="clipboard" size={20} color="#3C7DC3" />
+                            <InputModal iconName="clipboard" placeHolder={data.title}></InputModal>
                         </View>
 
                         {/* Input para o username */}
                         <View style={styles.inputContainer}>
-                            <TextInput style={styles.input} defaultValue={data.username} />
-                            <FontAwesome name="eye" size={20} color="#3C7DC3" />
+                            <InputModal iconName="eye" placeHolder={data.username}></InputModal>
                         </View>
 
                         {/* Input para a senha */}
                         <View style={styles.inputContainer}>
-                            <TextInput style={styles.input} defaultValue={data.password} />
-                            <FontAwesome name="clipboard" size={20} color="#3C7DC3" />
+                            <InputModal iconName="clipboard" placeHolder={data.password}></InputModal>
                         </View>
 
                         {/* Botões */}
                         <View style={styles.buttonRow}>
-                            <Pressable style={styles.saveButton}>
-                                <Text style={styles.saveButtonText}>Salvar</Text>
-                            </Pressable>
-                            <Pressable style={styles.deleteButton}>
-                                <Text style={styles.deleteButtonText}>Excluir</Text>
-                            </Pressable>
+                            <Button title="Salvar" className="save"> </Button>
+                            <Button title="Excluir" className="delet" > </Button>
                         </View>
                     </View>
                 </View>

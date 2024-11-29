@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#87CEFA',
     },
     image: {
-        width: 70, 
+        width: 70,
         height: 70,
         marginTop: 20,
         marginBottom: 20,
@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     },
     textP: {
         fontSize: 18,
-        color: '#000', 
-        textAlign: 'center', 
+        color: '#000',
+        textAlign: 'center',
         fontWeight: "bold",
         marginBottom: 20,
     },
@@ -33,6 +33,26 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 10,
         alignItems: "baseline",
+    },
+    floatingButton: {
+        position: "absolute",
+        bottom: 20,
+        right: 20,
+        width: 55,
+        height: 55,
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 20,
+    },
+    profileButton: {
+        position: "absolute",
+        top: 20, // Ajusta a posição superior
+        right: 20, // Alinha no canto direito
+        width: 55,
+        height: 55,
+        justifyContent: "center",
+        alignItems: "center",
+        marginRight: 60,
     },
 });
 
