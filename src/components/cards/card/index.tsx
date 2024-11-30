@@ -50,17 +50,17 @@ export default function Card({ data }: CardProps) {
 
                         {/* Input para o título */}
                         <View style={styles.inputContainer}>
-                            <InputModal iconName="clipboard" defaultValue={data.title}></InputModal>
+                            <InputModal iconName="" defaultValue={data.title}></InputModal>
                         </View>
 
                         {/* Input para o username */}
                         <View style={styles.inputContainer}>
-                            <InputModal iconName="eye" defaultValue={data.username}></InputModal>
+                            <InputModal iconName="clipboard" defaultValue={data.username}></InputModal>
                         </View>
 
                         {/* Input para a senha */}
                         <View style={styles.inputContainer}>
-                            <InputModal iconName="clipboard" defaultValue={data.password}></InputModal>
+                            <InputModal iconName="eye" defaultValue={data.password}></InputModal>
                         </View>
 
                         {/* Botões */}
