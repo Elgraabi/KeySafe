@@ -42,7 +42,7 @@ export default function DashBoardScreen({ data }: CardProps) {
             <View style={styles.logoutButton}>
                 <ButtonCircle
                     className="logout"
-                    iconName="power-off" // Ícone de perfil
+                    iconName="sign-out" // Ícone de perfil
                     onPress={() => navigation.navigate("Login")} // Substitua pela navegação ou lógica desejada
                 />
             </View>
@@ -123,7 +123,7 @@ export default function DashBoardScreen({ data }: CardProps) {
 
                         {/* Botões */}
                         <View style={styles.buttonRow}>
-                            <Button title="Cancelar" className="cancel" />
+                            <Button title="Cancelar" className="cancelModal" />
                             <Button title="Salvar" className="save" />
                         </View>
                     </View>
