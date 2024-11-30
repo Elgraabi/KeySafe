@@ -61,21 +61,34 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     save: {
-        color: "#124DBC",
+        backgroundColor: "#124DBC",
         fontWeight: "bold",
     },
     saveButtonText: {
         fontWeight: "bold",
+        color: "#fff",
         fontSize: 16,
     },
     delet: {
+        backgroundColor: "#C3171A",
         fontWeight: "bold",
         fontSize: 16,
     },
     deletButtonText: {
         fontWeight: "bold",
         fontSize: 16,
+        color: "#fff",
     },
+    cancelModal: {
+        borderColor: "#124dbc",
+        borderWidth: 1, 
+        textTransform: "none", 
+    },
+    textCancelModal: {
+        color: "#124DBC",
+        fontWeight: "bold",
+        fontSize: 16,
+    }
 });
 
 export default styles;

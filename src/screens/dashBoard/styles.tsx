@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        marginTop: 40,
+        paddingTop: 60,
         backgroundColor: '#87CEFA',
     },
     image: {
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     profileButton: {
         position: "absolute",
-        top: 20, // Ajusta a posição superior
+        top: 60, // Ajusta a posição superior
         right: 20, // Alinha no canto direito
         width: 55,
         height: 55,
@@ -83,7 +83,10 @@ const styles = StyleSheet.create({
         color: "#6B7280",
       },
       buttonRow: {
-        marginRight: 100, marginLeft: 100, flexDirection: "row", justifyContent: "space-between" 
+        marginRight: 100, 
+        marginLeft: 100, 
+        flexDirection: "row", 
+        justifyContent: "space-between" 
       },
       saveButton: {
         flex: 1,
@@ -95,7 +98,7 @@ const styles = StyleSheet.create({
       },
       logoutButton: {
         position: "absolute",
-        top: 20, 
+        top: 60, 
         right: 300, 
         width: 55,
         height: 55,
