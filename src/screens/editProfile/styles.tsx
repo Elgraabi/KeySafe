@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     alignSelf: "center", // Centraliza o botão horizontalmente
     width: "90%", // Largura opcional para alinhar melhor
     margin: 10,
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
 
   buttonExcluir: {
@@ -82,6 +82,42 @@ const styles = StyleSheet.create({
     flexDirection: "row", // Alinha os botões verticalmente
     justifyContent: "space-around",
     alignItems: "center",
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalContainer: {
+    width: "90%",
+    backgroundColor: "#fff",
+    padding: 20,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: -1,
+    color: "#274BDB",
+    padding: 10,
+  },
+  buttonRow: {
+    marginRight: 100,
+    marginLeft: 100,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  textDel: {
+    fontSize: 20,
+    color: "#000",
+    margin: 20,
+    marginTop: 0,
+    textAlign: "center",
+    fontWeight: "bold",
+    marginBottom: 20,
+    padding: 10,
   },
 });
 export default styles;
