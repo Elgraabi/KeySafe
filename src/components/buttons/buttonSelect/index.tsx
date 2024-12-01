@@ -1,4 +1,4 @@
-import { Switch, Text, TouchableOpacity, View } from "react-native";
+import { Switch, Text, View } from "react-native";
 import React, { useState } from "react";
 import styles from "./styles";
 
