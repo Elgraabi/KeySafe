@@ -53,10 +53,7 @@ const styles = StyleSheet.create({
     color: "#6B7280",
   },
   buttonRow: {
-    marginRight: 100,
-    marginLeft: 100,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    marginRight: 100, marginLeft: 100, flexDirection: "row", justifyContent: "space-between" 
   },
   saveButton: {
     flex: 1,
