@@ -147,8 +147,9 @@ export default function EditProfileScreen({ data }: CardProps) {
                 style={{
                   alignItems: "center",
                   flexDirection: "row",
-                  margin: 30,
-                  marginRight: 130,
+                  margin: 20,
+                  marginRight: 179,
+                  justifyContent: "space-between",
                 }}
               >
                 <ButtonCircle
@@ -162,7 +163,7 @@ export default function EditProfileScreen({ data }: CardProps) {
               {/* Input para o nome */}
               <View style={styles.inputContainer}>
                 <InputModal
-                  iconName=""
+                  iconName="user"
                   placeHolder="Nome completo"
                   defaultValue=""
                 />
@@ -170,13 +171,17 @@ export default function EditProfileScreen({ data }: CardProps) {
 
               {/* Input para o email */}
               <View style={styles.inputContainer}>
-                <InputModal iconName="" placeHolder="E-mail" defaultValue="" />
+                <InputModal
+                  iconName="envelope-o"
+                  placeHolder="E-mail"
+                  defaultValue=""
+                />
               </View>
 
               {/* Input para confirmar email */}
               <View style={styles.inputContainer}>
                 <InputModal
-                  iconName=""
+                  iconName="envelope-o"
                   placeHolder="E-mail de confirmação"
                   defaultValue=""
                 />
