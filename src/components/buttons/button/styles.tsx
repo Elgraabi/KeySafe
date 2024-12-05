@@ -85,13 +85,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
-  alterarButtonText: {
-    fontWeight: "bold",
-    fontSize: 16,
-    borderColor: "#124dbc",
-  },
   textAlterar: {
-    color: "#000",
+    color: "#124DBC",
     fontWeight: "bold",
     fontSize: 16,
   },
