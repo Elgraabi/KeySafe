@@ -9,45 +9,48 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RoutesParams } from "../../navigation/routesParams";
 
 // Definindo o tipo de parâmetro de navegação para a rota "RecoverPassword"
-type RecoverPasswordParamsList = NativeStackNavigationProp<RoutesParams, "RecoverPassword">;
+type RecoverPasswordParamsList = NativeStackNavigationProp<
+  RoutesParams,
+  "RecoverPassword"
+>;
 
 export default function RecoverPasswordScreen() {
-    const navigation = useNavigation<RecoverPasswordParamsList>();
+  const navigation = useNavigation<RecoverPasswordParamsList>();
 
-    return (
-        <View style={styles.container}>
-            {/* Imagem do logo */}
-            <Image
-                style={styles.image}
-                source={require("../../../assets/imagens/logo.png")}
-            />
+  return (
+    <View style={styles.container}>
+      {/* Imagem do logo */}
+      <Image
+        style={styles.image}
+        source={require("../../../assets/imagens/logo.png")}
+      />
 
-            {/* Títulos da tela */}
-            <View style={styles.viewText}>
-                <Text style={styles.textTitle}>KeySafe</Text>
-                <Text style={styles.textTitle}>Recuperar Senha</Text>
-            </View>
-            
-            {/* Botão de retorno */}
-            <ButtonCircle
-                className="return"
-                iconName="arrow-left"
-                onPress={() => navigation.goBack()}
-            />
+      {/* Títulos da tela */}
+      <View style={styles.viewText}>
+        <Text style={styles.textTitle}>KeySafe</Text>
+        <Text style={styles.textTitleS}>Recuperar Senha</Text>
+      </View>
 
-            {/* Campos de entrada para usuário e senha */}
-            <Input title="Usuário" iconName="user" />
-            <Input title="Nova Senha" iconName="lock" secureTextEntry={true} />
-            <Input title="Confirme a Senha" iconName="lock" secureTextEntry={true} />
+      {/* Botão de retorno */}
+      <ButtonCircle
+        className="return"
+        iconName="arrow-left"
+        onPress={() => navigation.goBack()}
+      />
 
-            {/* Botão de confirmação */}
-            <View style={styles.view}>
-                <Button
-                    title="Confirmar"
-                    className="confirm"
-                    onPress={() => console.log("Senha redefinida com sucesso")}
-                />
-            </View>
-        </View>
-    );
+      {/* Campos de entrada para usuário e senha */}
+      <Input title="Usuário" iconName="user" />
+      <Input title="Nova Senha" iconName="lock" secureTextEntry={true} />
+      <Input title="Confirme a Senha" iconName="lock" secureTextEntry={true} />
+
+      {/* Botão de confirmação */}
+      <View style={styles.view}>
+        <Button
+          title="Confirmar"
+          className="confirm"
+          onPress={() => console.log("Senha redefinida com sucesso")}
+        />
+      </View>
+    </View>
+  );
 }

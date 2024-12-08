@@ -1,4 +1,5 @@
 import {
+  Text,
   TextInput,
   TextInputProps,
   TouchableOpacity,
@@ -12,39 +13,36 @@ type InputProps = TextInputProps & {
   iconName: string;
   placeHolder?: string;
   defaultValue?: string;
-  secureTextEntry?: boolean;
+  isPassword?: boolean; // Adiciona uma prop para identificar campos de senha
 };
 
 export default function InputModal({
   iconName,
   placeHolder,
   defaultValue,
-  secureTextEntry = false,
+  isPassword = false,
   ...rest
 }: InputProps) {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(!secureTextEntry);
-
-  const togglePasswordVisibility = () => {
-    setIsPasswordVisible(!isPasswordVisible);
-  };
-
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   return (
     <View style={styles.container}>
+      <Icon name={iconName} size={20} color="#3C7DC3" style={styles.icon} />
       <TextInput
         style={styles.inputText}
         defaultValue={defaultValue}
         placeholder={placeHolder}
-        secureTextEntry={!isPasswordVisible && secureTextEntry}
+        secureTextEntry={isPassword && !isPasswordVisible} // Altera visibilidade da senha
         {...rest}
       />
-      <Icon name={iconName} size={20} color="#3C7DC3" />
-      {secureTextEntry && (
-        <TouchableOpacity onPress={togglePasswordVisibility}>
+      {isPassword && (
+        <TouchableOpacity
+          onPress={() => setIsPasswordVisible(!isPasswordVisible)}
+          style={styles.eyeIconContainer} // Estilo para posicionar o ícone do olho
+        >
           <Icon
-            name={isPasswordVisible ? "eye" : "eye-slash"}
+            name={isPasswordVisible ? "eye-slash" : "eye"}
             size={20}
             color="#3C7DC3"
-            style={{ marginLeft: 10 }}
           />
         </TouchableOpacity>
       )}

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Modal, Pressable, Text, TextInput, View } from "react-native";
+import { Alert, Modal, Pressable, Text, TextInput, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import styles from "./styles";
 import ButtonCircle from "../../buttons/buttonCircle";
 import InputModal from "../../inputs/inputModal";
 import Button from "../../buttons/button";
+import * as Clipboard from "expo-clipboard"; // Importando o módulo de Clipboard
+import InputModalNovaSenha from "../../inputs/inputModalNovaSenha";
 
 type Data = {
   title: string;
@@ -21,6 +23,14 @@ type CardProps = {
 export default function Card({ data }: CardProps) {
   const [visibleModal, setVisibleModal] = useState(false);
 
+  const copyToClipboard = (text: string) => {
+    Clipboard.setStringAsync(text); // Copia o texto para a área de transferência
+    Alert.alert(
+      "Copiado",
+      "O e-mail foi copiado para a área de transferência."
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{data.title}</Text>
@@ -30,7 +40,7 @@ export default function Card({ data }: CardProps) {
         </Pressable>
       </View>
 
-      {/* Modal */}
+      {/* Modal detalhes da senha */}
       <Modal
         visible={visibleModal}
         transparent={true}
@@ -57,33 +67,36 @@ export default function Card({ data }: CardProps) {
 
             {/* Input para o título */}
             <View style={styles.inputContainer}>
-              <InputModal iconName="" defaultValue={data.title}></InputModal>
+              <InputModal
+                iconName=""
+                defaultValue={data.title}
+                editable={false}
+              />
             </View>
 
-            {/* Input para o username */}
+            {/* Input para o email */}
             <View style={styles.inputContainer}>
-              <InputModal
+              <InputModalNovaSenha
                 iconName="clipboard"
                 defaultValue={data.username}
-              ></InputModal>
+                editable={false}
+                onIconPress={() => copyToClipboard(data.username)} // Função para copiar o e-mail
+              />
             </View>
 
             {/* Input para a senha */}
             <View style={styles.inputContainer}>
               <InputModal
-                iconName="eye"
+                iconName=""
                 defaultValue={data.password}
-              ></InputModal>
+                secureTextEntry={true}
+              />
             </View>
 
             {/* Botões */}
             <View style={styles.buttonRow}>
-              <Button title="Salvar" className="save">
-                {" "}
-              </Button>
-              <Button title="Excluir" className="delet">
-                {" "}
-              </Button>
+              <Button title="Salvar" className="save"></Button>
+              <Button title="Excluir" className="delet"></Button>
             </View>
           </View>
         </View>

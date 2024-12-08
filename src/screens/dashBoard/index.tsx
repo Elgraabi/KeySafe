@@ -56,7 +56,7 @@ export default function DashBoardScreen({ data }: CardProps) {
 
       <Input title="Pesquisar senha" iconName="search" />
 
-      <Text style={styles.textTitle}>Minhas senhas</Text>
+      <Text style={styles.textTitleL}>Minhas senhas</Text>
 
       <View style={styles.container}>
         <FlatList
@@ -82,7 +82,7 @@ export default function DashBoardScreen({ data }: CardProps) {
         </View>
       </View>
 
-      {/* Modal */}
+      {/* Modal nova senha */}
       <Modal
         visible={visibleModal}
         transparent={true}
@@ -120,15 +120,21 @@ export default function DashBoardScreen({ data }: CardProps) {
 
             {/* Input para a senha */}
             <View style={styles.inputContainer}>
-              <InputModal iconName="eye" placeHolder="Senha" defaultValue="" />
+              <InputModal
+                iconName=""
+                placeHolder="Senha"
+                defaultValue=""
+                secureTextEntry={true}
+              />
             </View>
 
             {/* Input para a confirmar senha */}
             <View style={styles.inputContainer}>
               <InputModal
-                iconName="eye"
+                iconName=""
                 placeHolder="Confirmar senha"
                 defaultValue=""
+                secureTextEntry={true}
               />
             </View>
 

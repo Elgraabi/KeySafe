@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: 10,
     flexDirection: "row", // Alinha os botões verticalmente
-    justifyContent: "space-around",
+    justifyContent: "center",
     alignItems: "center",
   },
   modalOverlay: {
@@ -97,6 +97,8 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
     alignItems: "center",
+    justifyContent: "space-between", // Adicionado
+    height: "auto", // Garante ajuste automático
   },
   modalTitle: {
     fontSize: 18,
@@ -120,6 +122,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 20,
     padding: 10,
+  },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "center",
+    width: "50%",
+    paddingHorizontal: 10,
+    marginTop: 10,
   },
 });
 export default styles;
