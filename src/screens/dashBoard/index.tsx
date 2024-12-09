@@ -28,6 +28,17 @@ type CardProps = {
 export default function DashBoardScreen({ data }: CardProps) {
   const navigation = useNavigation<DashBoardParamsList>();
   const [visibleModal, setVisibleModal] = useState(false);
+  const [searchText, setSearchText] = useState(""); // Estado para o texto de busca
+  const [filteredKeys, setFilteredKeys] = useState(keys); // Estado para itens filtrados
+
+  // Função para filtrar os dados
+  const handleSearch = (text: string) => {
+    setSearchText(text);
+    const filtered = keys.filter((key) =>
+      key.title.toLowerCase().includes(text.toLowerCase())
+    );
+    setFilteredKeys(filtered);
+  };
 
   return (
     <View style={styles.container}>
@@ -54,13 +65,19 @@ export default function DashBoardScreen({ data }: CardProps) {
 
       <Text style={styles.textP}>KeySafe</Text>
 
-      <Input title="Pesquisar senha" iconName="search" />
+      {/* Campo de busca */}
+      <Input
+        title="Pesquisar senha"
+        iconName="search"
+        value={searchText}
+        onChangeText={handleSearch}
+      />
 
       <Text style={styles.textTitleL}>Minhas senhas</Text>
 
       <View style={styles.container}>
         <FlatList
-          data={keys}
+          data={filteredKeys}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <View id={item.id.toString()}>
