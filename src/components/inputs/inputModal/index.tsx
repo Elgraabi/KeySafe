@@ -37,13 +37,13 @@ export default function InputModal({
         secureTextEntry={!isPasswordVisible && secureTextEntry}
         {...rest}
       />
-      <Icon name={iconName} size={20} color="#3C7DC3" />
+      <Icon name={iconName} size={20} color="#0E3A8C" />
       {secureTextEntry && (
         <TouchableOpacity onPress={togglePasswordVisibility}>
           <Icon
             name={isPasswordVisible ? "eye" : "eye-slash"}
             size={20}
-            color="#3C7DC3"
+            color="#0E3A8C"
             style={{ marginLeft: 10 }}
           />
         </TouchableOpacity>

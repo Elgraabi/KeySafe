@@ -31,7 +31,7 @@ export default function InputModalNovaSenha({
       />
       {iconName && (
         <TouchableOpacity onPress={onIconPress}>
-          <Icon name={iconName} size={20} color="#3C7DC3" />
+          <Icon name={iconName} size={20} color="#0E3A8C" />
         </TouchableOpacity>
       )}
     </View>

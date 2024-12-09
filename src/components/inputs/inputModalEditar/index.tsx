@@ -26,7 +26,7 @@ export default function InputModal({
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   return (
     <View style={styles.container}>
-      <Icon name={iconName} size={20} color="#3C7DC3" style={styles.icon} />
+      <Icon name={iconName} size={20} color="#0E3A8C" style={styles.icon} />
       <TextInput
         style={styles.inputText}
         defaultValue={defaultValue}
@@ -42,7 +42,7 @@ export default function InputModal({
           <Icon
             name={isPasswordVisible ? "eye-slash" : "eye"}
             size={20}
-            color="#3C7DC3"
+            color="#0E3A8C"
           />
         </TouchableOpacity>
       )}

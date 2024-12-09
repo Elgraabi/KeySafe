@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
-    marginLeft: 200,
+    marginLeft: 20,
   },
   view: {
     width: "100%",
