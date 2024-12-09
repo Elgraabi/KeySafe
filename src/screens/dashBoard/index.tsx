@@ -1,4 +1,4 @@
-import { FlatList, Image, Modal, Text, View } from "react-native";
+import { Alert, FlatList, Image, Modal, Text, View } from "react-native";
 import styles from "./styles";
 import Input from "../../components/inputs/input";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -31,6 +31,15 @@ export default function DashBoardScreen({ data }: CardProps) {
   const [searchText, setSearchText] = useState(""); // Estado para o texto de busca
   const [filteredKeys, setFilteredKeys] = useState(keys); // Estado para itens filtrados
 
+  // Estado para armazenar senhas cadastradas
+  const [savedPasswords, setSavedPasswords] = useState<Data[]>(keys); // Inicializa com dados de exemplo (mock)
+
+  // Estados para a modal de nova senha
+  const [title, setTitle] = useState(""); // Título da nova senha
+  const [username, setUsername] = useState(""); // Nome de usuário/email
+  const [password, setPassword] = useState(""); // Senha
+  const [confirmPassword, setConfirmPassword] = useState(""); // Confirmar senha
+
   // Função para filtrar os dados
   const handleSearch = (text: string) => {
     setSearchText(text);
@@ -38,6 +47,40 @@ export default function DashBoardScreen({ data }: CardProps) {
       key.title.toLowerCase().includes(text.toLowerCase())
     );
     setFilteredKeys(filtered);
+  };
+
+  // Função para lidar com o salvamento da nova senha
+  const handleSaveNewPassword = () => {
+    if (password !== confirmPassword) {
+      Alert.alert("Erro", "As senhas não coincidem!");
+      return;
+    }
+
+    if (title === "" || username === "" || password === "") {
+      Alert.alert("Erro", "Preencha todos os campos!");
+      return;
+    }
+
+    // Criar um novo objeto para a senha cadastrada
+    const newPassword: Data = {
+      id: new Date().toString(), // Geração de ID único
+      title,
+      username,
+      password,
+      createdAt: new Date().toISOString(),
+    };
+
+    // Atualiza o estado com a nova senha
+    setSavedPasswords((prevPasswords) => [...prevPasswords, newPassword]);
+
+    // Fechar a modal após salvar
+    setVisibleModal(false);
+
+    // Limpar os campos da modal
+    setTitle("");
+    setUsername("");
+    setPassword("");
+    setConfirmPassword("");
   };
 
   return (
@@ -127,12 +170,22 @@ export default function DashBoardScreen({ data }: CardProps) {
 
             {/* Input para o título */}
             <View style={styles.inputContainer}>
-              <InputModal iconName="" placeHolder="Título" />
+              <InputModal
+                iconName=""
+                placeHolder="Título"
+                value={title}
+                onChangeText={setTitle}
+              />
             </View>
 
             {/* Input para o username */}
             <View style={styles.inputContainer}>
-              <InputModal iconName="" placeHolder="Usuário/email" />
+              <InputModal
+                iconName=""
+                placeHolder="E-mail"
+                value={username}
+                onChangeText={setUsername}
+              />
             </View>
 
             {/* Input para a senha */}
@@ -140,7 +193,8 @@ export default function DashBoardScreen({ data }: CardProps) {
               <InputModal
                 iconName=""
                 placeHolder="Senha"
-                defaultValue=""
+                value={password}
+                onChangeText={setPassword}
                 secureTextEntry={true}
               />
             </View>
@@ -150,15 +204,24 @@ export default function DashBoardScreen({ data }: CardProps) {
               <InputModal
                 iconName=""
                 placeHolder="Confirmar senha"
-                defaultValue=""
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
                 secureTextEntry={true}
               />
             </View>
 
             {/* Botões */}
             <View style={styles.buttonRow}>
-              <Button title="Cancelar" className="cancelModal" />
-              <Button title="Salvar" className="save" />
+              <Button
+                title="Cancelar"
+                className="cancelModal"
+                onPress={() => setVisibleModal(false)}
+              />
+              <Button
+                title="Salvar"
+                className="save"
+                onPress={handleSaveNewPassword}
+              />
             </View>
           </View>
         </View>
