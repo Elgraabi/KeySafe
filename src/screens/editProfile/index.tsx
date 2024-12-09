@@ -8,6 +8,7 @@ import ButtonCircle from "../../components/buttons/buttonCircle";
 import Input from "../../components/inputs/input";
 import Button from "../../components/buttons/button";
 import InputModal from "../../components/inputs/inputModal";
+import InputModalEditar from "../../components/inputs/inputModalEditar";
 
 type EditProfileParamsList = NativeStackNavigationProp<
   RoutesParams,
@@ -60,18 +61,20 @@ export default function EditProfileScreen({ data }: CardProps) {
       <Input title="Senha" iconName="lock" secureTextEntry={true} />
 
       <View style={styles.view}>
-        <Button
-          title="Alterar senha"
-          className="alterar"
-          onPress={() => setVisibleModal(true)}
-          style={styles.buttonAlterar} // Estilo do botão Alterar senha
-        />
-        <Button
-          title="Editar perfil"
-          className="editarPerf"
-          onPress={() => setVisibleModalEdit(true)}
-          style={styles.buttonEdit} // Estilo do botão Editar perfil
-        />
+        <View style={styles.buttons}>
+          <Button
+            title="Alterar senha"
+            className="alterar"
+            onPress={() => setVisibleModal(true)}
+            style={styles.buttonAlterar} // Estilo do botão Alterar senha
+          />
+          <Button
+            title="Editar perfil"
+            className="editarPerf"
+            onPress={() => setVisibleModalEdit(true)}
+            style={styles.buttonEdit} // Estilo do botão Editar perfil
+          />
+        </View>
         {/* Botão "Excluir perfil" movido para uma nova View */}
         <View style={styles.bottomButtonContainer}>
           <Button
@@ -96,7 +99,7 @@ export default function EditProfileScreen({ data }: CardProps) {
                   alignItems: "center",
                   flexDirection: "row",
                   margin: 30,
-                  marginRight: 130,
+                  marginRight: 136,
                 }}
               >
                 <ButtonCircle
@@ -110,25 +113,27 @@ export default function EditProfileScreen({ data }: CardProps) {
               {/* Input para a senha */}
               <View style={styles.inputContainer}>
                 <InputModal
-                  iconName="eye"
+                  iconName=""
                   placeHolder="Senha"
                   defaultValue=""
+                  secureTextEntry={true}
                 />
               </View>
 
               {/* Input para a confirmar senha */}
               <View style={styles.inputContainer}>
                 <InputModal
-                  iconName="eye"
+                  iconName=""
                   placeHolder="Confirmar senha"
                   defaultValue=""
+                  secureTextEntry={true}
                 />
               </View>
 
               {/* Botões */}
               <View style={styles.buttonRow}>
-                <Button title="Cancelar" className="cancel" />
-                <Button title="Alterar" className="alterar" />
+                <Button title="Cancelar" className="cancelModal" />
+                <Button title="Alterar" className="alterarSenha" />
               </View>
             </View>
           </View>
@@ -147,8 +152,9 @@ export default function EditProfileScreen({ data }: CardProps) {
                 style={{
                   alignItems: "center",
                   flexDirection: "row",
-                  margin: 30,
-                  marginRight: 130,
+                  margin: 20,
+                  marginRight: 179,
+                  justifyContent: "space-between",
                 }}
               >
                 <ButtonCircle
@@ -161,8 +167,8 @@ export default function EditProfileScreen({ data }: CardProps) {
 
               {/* Input para o nome */}
               <View style={styles.inputContainer}>
-                <InputModal
-                  iconName=""
+                <InputModalEditar
+                  iconName="user"
                   placeHolder="Nome completo"
                   defaultValue=""
                 />
@@ -170,13 +176,17 @@ export default function EditProfileScreen({ data }: CardProps) {
 
               {/* Input para o email */}
               <View style={styles.inputContainer}>
-                <InputModal iconName="" placeHolder="E-mail" defaultValue="" />
+                <InputModalEditar
+                  iconName="envelope-o"
+                  placeHolder="E-mail"
+                  defaultValue=""
+                />
               </View>
 
               {/* Input para confirmar email */}
               <View style={styles.inputContainer}>
-                <InputModal
-                  iconName=""
+                <InputModalEditar
+                  iconName="envelope-o"
                   placeHolder="E-mail de confirmação"
                   defaultValue=""
                 />
@@ -184,17 +194,17 @@ export default function EditProfileScreen({ data }: CardProps) {
 
               {/* Input para a senha */}
               <View style={styles.inputContainer}>
-                <InputModal
-                  iconName="eye"
+                <InputModalEditar
+                  iconName="lock"
                   placeHolder="Senha"
-                  defaultValue=""
+                  isPassword={true}
                 />
               </View>
 
               {/* Botões */}
               <View style={styles.buttonRow}>
-                <Button title="Cancelar" className="cancel" />
-                <Button title="Alterar" className="alterar" />
+                <Button title="Cancelar" className="cancelModal" />
+                <Button title="Alterar" className="alterarSenha" />
               </View>
             </View>
           </View>
@@ -231,7 +241,7 @@ export default function EditProfileScreen({ data }: CardProps) {
 
               {/* Botões */}
               <View style={styles.buttonRow}>
-                <Button title="Cancelar" className="cancel" />
+                <Button title="Cancelar" className="cancelModal" />
                 <Button title="Deletar" className="delet" />
               </View>
             </View>
