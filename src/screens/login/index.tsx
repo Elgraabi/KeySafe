@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert, Image, Text, View } from "react-native";
 import Input from "../../components/inputs/input";
 import styles from "./styles";
@@ -19,6 +20,19 @@ export default function LoginScreen() {
   // Estados para armazenar entrada do usuário
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [stayConnected, setStayConnected] = useState(false);
+
+  // Verificar no AsyncStorage se o usuário escolheu "manter conectado"
+  useEffect(() => {
+    const checkStayConnected = async () => {
+      const savedUsername = await AsyncStorage.getItem("stayConnectedUser");
+      if (savedUsername) {
+        setUsername(savedUsername);
+        navigation.navigate("DashBoard");
+      }
+    };
+    checkStayConnected();
+  }, []);
 
   // Função para lidar com o login
   const handleLogin = async () => {
@@ -38,6 +52,13 @@ export default function LoginScreen() {
       );
 
       if (isPasswordValid) {
+        // Salvar estado "manter conectado" no AsyncStorage
+        if (stayConnected) {
+          await AsyncStorage.setItem("stayConnectedUser", username);
+        } else {
+          await AsyncStorage.removeItem("stayConnectedUser");
+        }
+
         Alert.alert("Sucesso", "Login realizado com sucesso!");
         navigation.navigate("DashBoard");
       } else {
@@ -81,7 +102,11 @@ export default function LoginScreen() {
         onChangeText={setPassword}
       />
 
-      <ButtonSelect />
+      {/* Atualizar estado "manter conectado" */}
+      <ButtonSelect
+        isSelected={stayConnected}
+        onPress={() => setStayConnected(!stayConnected)}
+      />
 
       <Button title="Entrar" className="enter" onPress={handleLogin} />
       <Button
