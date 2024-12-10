@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    marginTop: 30,
+    marginTop: 40,
     backgroundColor: "#87CEFA",
   },
   image: {
@@ -47,10 +47,9 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,
-    borderWidth: 1.5,
     alignItems: "center",
     justifyContent: "center",
-    borderColor: "#124DBC",
+    color: "#124DBC",
   },
   buttonEdit: {
     backgroundColor: "#124DBC",
@@ -76,13 +75,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
-    marginLeft: 20,
   },
   view: {
     width: "100%",
     marginTop: 10,
     flexDirection: "row", // Alinha os botões verticalmente
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center",
   },
   modalOverlay: {
@@ -97,8 +95,6 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
     alignItems: "center",
-    justifyContent: "space-between", // Adicionado
-    height: "auto", // Garante ajuste automático
   },
   modalTitle: {
     fontSize: 18,
@@ -122,13 +118,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 20,
     padding: 10,
-  },
-  buttons: {
-    flexDirection: "row",
-    justifyContent: "center",
-    width: "50%",
-    paddingHorizontal: 10,
-    marginTop: 10,
   },
 });
 export default styles;

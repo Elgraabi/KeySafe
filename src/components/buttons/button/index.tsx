@@ -19,7 +19,6 @@ type StyleKeys =
   | "delet"
   | "cancelModal"
   | "alterar"
-  | "alterarSenha"
   | "editarPerf";
 
 type ButtonProps = TouchableOpacityProps & {
@@ -44,8 +43,6 @@ export default function Button({ title, className, ...rest }: ButtonProps) {
     styleText = { ...styles.textCancelModal };
   } else if (className === "alterar") {
     styleText = { ...styles.textAlterar };
-  } else if (className === "alterarSenha") {
-    styleText = { ...styles.textAlterarSenha };
   } else {
     styleText = { ...styles.buttonText };
   }

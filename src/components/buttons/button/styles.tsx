@@ -42,15 +42,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#124DBC",
   },
   cancel: {
+    backgroundColor: "#124DBC",
     textTransform: "none",
     borderRadius: 8,
-    backgroundColor: "#124DBC",
   },
   registerUser: {
     borderColor: "#124DBC",
     backgroundColor: "#FFFFFF",
     fontWeight: "bold",
-    borderWidth: 1.5,
     textTransform: "none",
   },
   registerUserText: {
@@ -86,19 +85,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
+  alterarButtonText: {
+    fontWeight: "bold",
+    fontSize: 16,
+    borderColor: "#124dbc",
+  },
   textAlterar: {
-    color: "#124DBC",
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-  alterarSenha: {
-    fontWeight: "bold",
-    fontSize: 16,
-    borderRadius: 5,
-    backgroundColor: "#124DBC",
-  },
-  textAlterarSenha: {
-    color: "#fff",
+    color: "#000",
     fontWeight: "bold",
     fontSize: 16,
   },
