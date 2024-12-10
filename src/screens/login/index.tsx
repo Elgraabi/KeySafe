@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Alert, Image, Text, View } from "react-native";
+import React from "react";
+import { Image, Text, View } from "react-native";
 import Input from "../../components/inputs/input";
 import styles from "./styles";
 import ButtonCircle from "../../components/buttons/buttonCircle";
@@ -9,116 +8,38 @@ import Button from "../../components/buttons/button";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
-import { validatePassword } from "../../services/security"; // Função para validar senha
-import { getPassword } from "../../services/storage"; // Função para obter senha armazenada
 
 type LoginParamsList = NativeStackNavigationProp<RoutesParams, "Login">;
 
 export default function LoginScreen() {
-  const navigation = useNavigation<LoginParamsList>();
+    const navigation = useNavigation<LoginParamsList>();
 
-  // Estados para armazenar entrada do usuário
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [stayConnected, setStayConnected] = useState(false);
+    return (
+        <View style={styles.container}>
+            <Image
+                style={styles.image}
+                source={require("../../../assets/imagens/logo.png")}
+            />
 
-  // Verificar no AsyncStorage se o usuário escolheu "manter conectado"
-  useEffect(() => {
-    const checkStayConnected = async () => {
-      const savedUsername = await AsyncStorage.getItem("stayConnectedUser");
-      if (savedUsername) {
-        setUsername(savedUsername);
-        navigation.navigate("DashBoard");
-      }
-    };
-    checkStayConnected();
-  }, []);
+            <View style={styles.viewText}>
+                <Text style={styles.textTitle}>KeySafe</Text>
+                <Text style={styles.textTitle}>Login</Text>
+            </View>
 
-  // Função para lidar com o login
-  const handleLogin = async () => {
-    try {
-      // Recuperar a senha armazenada pelo nome de usuário
-      const storedHashedPassword = await getPassword(username);
+            <ButtonCircle className="return" iconName="arrow-left" onPress={() => navigation.navigate("Welcome")}/>
 
-      if (!storedHashedPassword) {
-        Alert.alert("Erro", "Usuário não encontrado!");
-        return;
-      }
+            <Input title="Usuário" iconName="user" />
+            <Input title="Senha" iconName="lock" secureTextEntry={true} />
 
-      // Validar a senha inserida com o hash armazenado
-      const isPasswordValid = await validatePassword(
-        password,
-        storedHashedPassword
-      );
+            <ButtonSelect />
 
-      if (isPasswordValid) {
-        // Salvar estado "manter conectado" no AsyncStorage
-        if (stayConnected) {
-          await AsyncStorage.setItem("stayConnectedUser", username);
-        } else {
-          await AsyncStorage.removeItem("stayConnectedUser");
-        }
-
-        Alert.alert("Sucesso", "Login realizado com sucesso!");
-        navigation.navigate("DashBoard");
-      } else {
-        Alert.alert("Erro", "Senha incorreta!");
-      }
-    } catch (error) {
-      console.error(error);
-      Alert.alert("Erro", "Ocorreu um erro ao realizar o login.");
-    }
-  };
-
-  return (
-    <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={require("../../../assets/imagens/logo.png")}
-      />
-
-      <View style={styles.viewText}>
-        <Text style={styles.textTitle}>KeySafe</Text>
-        <Text style={styles.textTitleL}>Login</Text>
-      </View>
-
-      <ButtonCircle
-        className="return"
-        iconName="arrow-left"
-        onPress={() => navigation.navigate("Welcome")}
-      />
-
-      <Input
-        title="Usuário"
-        iconName="user"
-        value={username}
-        onChangeText={setUsername}
-      />
-      <Input
-        title="Senha"
-        iconName="lock"
-        secureTextEntry={true}
-        value={password}
-        onChangeText={setPassword}
-      />
-
-      {/* Atualizar estado "manter conectado" */}
-      <ButtonSelect
-        isSelected={stayConnected}
-        onPress={() => setStayConnected(!stayConnected)}
-      />
-
-      <Button title="Entrar" className="enter" onPress={handleLogin} />
-      <Button
-        title="Esqueceu sua senha?"
-        className="forgotYourPassword"
-        onPress={() => navigation.navigate("RecoverPassword")}
-      />
-      <Button
-        title="Cadastrar"
-        className="register"
-        onPress={() => navigation.navigate("RegisterUser")}
-      />
-    </View>
-  );
+            <Button title="Entrar" className="enter" onPress={() => navigation.navigate("DashBoard")} />
+            <Button
+                title="Esqueceu sua senha?"
+                className="forgotYourPassword"
+                onPress={() => navigation.navigate("RecoverPassword")}
+            />
+            <Button title="Cadastrar" className="register" onPress={() => navigation.navigate("RegisterUser")} />
+        </View>
+    );
 }

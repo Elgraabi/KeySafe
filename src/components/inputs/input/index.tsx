@@ -1,48 +1,20 @@
-import {
-  TextInput,
-  TextInputProps,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import { Text, TextInput, TextInputProps, View } from "react-native";
+import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from "./styles";
-import { useState } from "react";
 
 type InputProps = TextInputProps & {
-  title: string;
-  iconName: string;
-  secureTextEntry?: boolean; // Propriedade para inputs de senha
+    title: string;
+    iconName: string;
 };
 
-export default function Input({
-  title,
-  iconName,
-  secureTextEntry,
-  ...rest
-}: InputProps) {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
-  return (
-    <View style={styles.container}>
-      <Icon name={iconName} size={20} color={"#022971"} />
-      <TextInput
-        style={styles.inputText}
-        placeholder={title}
-        secureTextEntry={secureTextEntry && !isPasswordVisible} // Controla a visibilidade
-        {...rest}
-      />
-      {secureTextEntry && (
-        <TouchableOpacity
-          onPress={() => setIsPasswordVisible(!isPasswordVisible)}
-        >
-          <Icon
-            name={isPasswordVisible ? "eye" : "eye-slash"}
-            size={20}
-            color="#022971"
-            style={styles.iconEye} // Adicionar margem se necessário
-          />
-        </TouchableOpacity>
-      )}
-    </View>
-  );
+export default function Input({ title, iconName, ...rest }: InputProps) {
+    return (
+        <View style={styles.container}>
+            <Icon name={iconName} size={20}/>
+            <TextInput 
+                style={styles.inputText}
+                placeholder={title}
+            />
+        </View>
+    );
 }
