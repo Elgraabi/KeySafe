@@ -1,3 +1,4 @@
+import React from "react";
 import {
   View,
   Text,
@@ -6,20 +7,7 @@ import {
 } from "react-native";
 import styles from "./styles";
 
-type StyleKeys =
-  | "loading"
-  | "return"
-  | "enter"
-  | "forgotYourPassword"
-  | "register"
-  | "confirm"
-  | "cancel"
-  | "registerUser"
-  | "save"
-  | "delet"
-  | "cancelModal"
-  | "alterar"
-  | "editarPerf";
+type StyleKeys = keyof typeof styles;
 
 type ButtonProps = TouchableOpacityProps & {
   title?: string;
@@ -41,7 +29,7 @@ export default function Button({ title, className, ...rest }: ButtonProps) {
     styleText = { ...styles.deletButtonText };
   } else if (className === "cancelModal") {
     styleText = { ...styles.textCancelModal };
-  } else if (className === "alterar") {
+  } else if (className === "alterar" as keyof typeof styles) {
     styleText = { ...styles.textAlterar };
   } else {
     styleText = { ...styles.buttonText };

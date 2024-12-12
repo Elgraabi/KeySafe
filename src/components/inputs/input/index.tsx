@@ -14,6 +14,7 @@ export default function Input({ title, iconName, ...rest }: InputProps) {
             <TextInput 
                 style={styles.inputText}
                 placeholder={title}
+                {...rest}
             />
         </View>
     );
