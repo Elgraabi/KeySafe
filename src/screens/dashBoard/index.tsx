@@ -16,7 +16,7 @@ type DashBoardParamsList = NativeStackNavigationProp<RoutesParams, "DashBoard">;
 type Data = {
     title: string;
     createdAt: string;
-    id: string;
+    id: number; // Alterado de string para number
     username: string;
     password: string;
 };
@@ -42,7 +42,7 @@ export default function DashBoardScreen({ data }: CardProps) {
             <View style={styles.logoutButton}>
                 <ButtonCircle
                     className="logout"
-                    iconName="sign-out" // Ícone de perfil
+                    iconName="arrow-left" // Ícone de perfil
                     onPress={() => navigation.navigate("Login")} // Substitua pela navegação ou lógica desejada
                 />
             </View>
@@ -65,17 +65,16 @@ export default function DashBoardScreen({ data }: CardProps) {
             <View style={styles.container}>
                 <FlatList
                     data={keys}
-                    keyExtractor={item => item.id.toString()}
+                    keyExtractor={item => item.id.toString()} // A chave é convertida para string
                     renderItem={({ item }) => (
                         <View id={item.id.toString()}>
                             <Card
                                 data={{
                                     ...item,
-                                    id: item.id.toString()
+                                    id: item.id.toString() // Garantindo que o id seja tratado como string
                                 }}
                             />
                         </View>
-
                     )}
                 />
                 <View style={styles.floatingButton}>

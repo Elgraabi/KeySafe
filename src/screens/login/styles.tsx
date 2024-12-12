@@ -26,8 +26,28 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     viewText: {
-        marginBottom: 30, 
+        marginBottom: 80, 
         alignItems: "center",
+    },
+    checkboxContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 20,
+        paddingRight: 160,
+    },
+    label: {
+        margin: 8,
+    },
+    errorText: {
+        color: "red",
+        fontSize: 12,
+        marginBottom: 10,
+        marginRight: 150,
+        alignItems: "baseline",
+    },
+    boxButto: {
+        height: "100%",
+        marginTop: 60,
     }
 });
 
