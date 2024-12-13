@@ -71,6 +71,7 @@ export default function Card({ data, onDelete }: CardProps) {
       await AsyncStorage.setItem("passwords", JSON.stringify(updatedPasswords));
 
       Alert.alert("Sucesso", "Senha excluída com sucesso!");
+      onDelete();
       setVisibleModal(false); // Fecha o modal após excluir
     } catch (error) {
       Alert.alert("Erro", "Não foi possível excluir a senha.");

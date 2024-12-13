@@ -18,6 +18,7 @@ type Data = {
   createdAt: string;
   id: number; // Alterado de string para number
   username: string;
+  description: string;
   password: string;
 };
 
@@ -29,11 +30,11 @@ export default function DashBoardScreen({ data }: CardProps) {
   const navigation = useNavigation<DashBoardParamsList>();
 
   const [newTitle, setNewTitle] = useState("");
-  const [newUsername, setNewUsername] = useState("");
+  const [newDescription, setNewDescription] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
   const handleAddPassword = async () => {
-    if (!newTitle || !newUsername || !newPassword) {
+    if (!newTitle || !newDescription || !newPassword) {
       Alert.alert("Erro", "Preencha todos os campos.");
       return;
     }
@@ -41,7 +42,7 @@ export default function DashBoardScreen({ data }: CardProps) {
     const newPasswordData = {
       id: Date.now(), // Ou use uuidv4()
       title: newTitle,
-      username: newUsername,
+      description: newDescription,
       password: newPassword,
       createdAt: new Date().toISOString(),
     };
@@ -54,7 +55,7 @@ export default function DashBoardScreen({ data }: CardProps) {
       fetchPasswords(); // Atualiza a lista exibida
       setVisibleModal(false); // Fecha o modal
       setNewTitle("");
-      setNewUsername("");
+      setNewDescription("");
       setNewPassword("");
     } catch (error) {
       Alert.alert("Erro", "Não foi possível salvar a senha.");
@@ -183,13 +184,13 @@ export default function DashBoardScreen({ data }: CardProps) {
               />
             </View>
 
-            {/* Input para o username */}
-            <View style={styles.inputContainer}>
+            {/* Input para o descrição */}
+            <View style={styles.inputContainerDes}>
               <InputModal
                 iconName=""
-                placeHolder="Usuário"
-                value={newUsername}
-                onChangeText={setNewUsername}
+                placeHolder="Descrição"
+                value={newDescription}
+                onChangeText={setNewDescription}
               />
             </View>
 
