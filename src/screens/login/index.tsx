@@ -1,6 +1,6 @@
 // LoginScreen.tsx
 import React from "react";
-import { Image, Text, View, StyleSheet, Alert } from "react-native";
+import { Image, Text, View, Alert } from "react-native";
 import { Formik } from "formik";
 import { useAuth } from "../../context/authContext"; // Certifique-se de que o caminho está correto
 import Input from "../../components/inputs/input";

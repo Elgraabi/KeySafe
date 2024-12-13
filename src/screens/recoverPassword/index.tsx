@@ -73,7 +73,7 @@ export default function RecoverPasswordScreen() {
       {/* Títulos da tela */}
       <View style={styles.viewText}>
         <Text style={styles.textTitle}>KeySafe</Text>
-        <Text style={styles.textTitleS}>Recuperar Senha</Text>
+        <Text style={styles.textTitle}>Recuperar Senha</Text>
       </View>
 
       {/* Botão de retorno */}
