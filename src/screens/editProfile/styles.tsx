@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
-    color: "#124DBC",
+    borderWidth: 1.5,
+    borderColor: "#124DBC",
   },
   buttonEdit: {
     backgroundColor: "#124DBC",
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: 10,
     flexDirection: "row", // Alinha os botões verticalmente
-    justifyContent: "space-around",
+    justifyContent: "center",
     alignItems: "center",
   },
   modalOverlay: {
@@ -88,6 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     justifyContent: "center",
     alignItems: "center",
+    height: "auto",
   },
   modalContainer: {
     width: "90%",
@@ -118,6 +120,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 20,
     padding: 10,
+  },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "center",
+    width: "50%",
+    paddingHorizontal: 10,
+    marginTop: 10,
   },
 });
 export default styles;

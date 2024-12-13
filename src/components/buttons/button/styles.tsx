@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   cancelModal: {
-    borderColor: "#124dbc",
-    borderWidth: 1,
+    borderColor: "#124DBC",
+    borderWidth: 1.3,
     textTransform: "none",
   },
   textCancelModal: {
@@ -88,12 +88,17 @@ const styles = StyleSheet.create({
   alterarButtonText: {
     fontWeight: "bold",
     fontSize: 16,
-    borderColor: "#124dbc",
   },
   textAlterar: {
-    color: "#000",
+    color: "#124DBC",
     fontWeight: "bold",
     fontSize: 16,
+  },
+  alterar: {
+    fontWeight: "bold",
+    fontSize: 16,
+    borderRadius: 5,
+    backgroundColor: "#124DBC",
   },
 });
 

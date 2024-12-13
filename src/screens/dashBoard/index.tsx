@@ -39,6 +39,7 @@ export default function DashBoardScreen({ data }: CardProps) {
     );
     setFilteredKeys(filtered);
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.profileButton}>
@@ -71,7 +72,7 @@ export default function DashBoardScreen({ data }: CardProps) {
         onChangeText={handleSearch}
       />
 
-      <Text style={styles.textTitle}>Minhas senhas</Text>
+      <Text style={styles.textTitleL}>Minhas senhas</Text>
 
       <View style={styles.container}>
         <FlatList
@@ -129,20 +130,16 @@ export default function DashBoardScreen({ data }: CardProps) {
 
             {/* Input para o username */}
             <View style={styles.inputContainer}>
-              <InputModal iconName="" placeHolder="Usuário/email" />
+              <InputModal iconName="" placeHolder="Usuário" />
             </View>
 
             {/* Input para a senha */}
             <View style={styles.inputContainer}>
-              <InputModal iconName="eye" placeHolder="Senha" defaultValue="" />
-            </View>
-
-            {/* Input para a confirmar senha */}
-            <View style={styles.inputContainer}>
               <InputModal
-                iconName="eye"
-                placeHolder="Confirmar senha"
+                iconName=""
+                placeHolder="Senha"
                 defaultValue=""
+                secureTextEntry={true}
               />
             </View>
 

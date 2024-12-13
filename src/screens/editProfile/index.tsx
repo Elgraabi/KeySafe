@@ -8,6 +8,7 @@ import ButtonCircle from "../../components/buttons/buttonCircle";
 import Input from "../../components/inputs/input";
 import Button from "../../components/buttons/button";
 import InputModal from "../../components/inputs/inputModal";
+import InputModalEditar from "../../components/inputs/inputModalEditar";
 
 type EditProfileParamsList = NativeStackNavigationProp<
   RoutesParams,
@@ -59,7 +60,7 @@ export default function EditProfileScreen({ data }: CardProps) {
       <Input title="E-mail de recuperação" iconName="envelope-o" />
       <Input title="Senha" iconName="lock" secureTextEntry={true} />
 
-      <View style={styles.view}>
+      <View style={styles.buttons}>
         <Button
           title="Alterar senha"
           className="alterar"
@@ -110,25 +111,27 @@ export default function EditProfileScreen({ data }: CardProps) {
               {/* Input para a senha */}
               <View style={styles.inputContainer}>
                 <InputModal
-                  iconName="eye"
+                  iconName=""
                   placeHolder="Senha"
                   defaultValue=""
+                  secureTextEntry={true}
                 />
               </View>
 
               {/* Input para a confirmar senha */}
               <View style={styles.inputContainer}>
                 <InputModal
-                  iconName="eye"
+                  iconName=""
                   placeHolder="Confirmar senha"
                   defaultValue=""
+                  secureTextEntry={true}
                 />
               </View>
 
               {/* Botões */}
               <View style={styles.buttonRow}>
-                <Button title="Cancelar" className="cancel" />
-                <Button title="Alterar" className="alterar" />
+                <Button title="Cancelar" className="cancelModal" />
+                <Button title="Salvar" className="save" />
               </View>
             </View>
           </View>
@@ -161,8 +164,8 @@ export default function EditProfileScreen({ data }: CardProps) {
 
               {/* Input para o nome */}
               <View style={styles.inputContainer}>
-                <InputModal
-                  iconName=""
+                <InputModalEditar
+                  iconName="user"
                   placeHolder="Nome completo"
                   defaultValue=""
                 />
@@ -170,31 +173,28 @@ export default function EditProfileScreen({ data }: CardProps) {
 
               {/* Input para o email */}
               <View style={styles.inputContainer}>
-                <InputModal iconName="" placeHolder="E-mail" defaultValue="" />
-              </View>
-
-              {/* Input para confirmar email */}
-              <View style={styles.inputContainer}>
-                <InputModal
-                  iconName=""
-                  placeHolder="E-mail de confirmação"
+                <InputModalEditar
+                  iconName="envelope-o"
+                  placeHolder="E-mail"
                   defaultValue=""
                 />
               </View>
 
               {/* Input para a senha */}
               <View style={styles.inputContainer}>
-                <InputModal
-                  iconName="eye"
+                <InputModalEditar
+                  iconName="lock"
                   placeHolder="Senha"
+                  isPassword={true}
                   defaultValue=""
+                  secureTextEntry={true}
                 />
               </View>
 
               {/* Botões */}
               <View style={styles.buttonRow}>
-                <Button title="Cancelar" className="cancel" />
-                <Button title="Alterar" className="alterar" />
+                <Button title="Cancelar" className="cancelModal" />
+                <Button title="Salvar" className="save" />
               </View>
             </View>
           </View>

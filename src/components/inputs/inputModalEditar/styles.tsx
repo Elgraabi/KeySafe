@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
@@ -15,22 +14,17 @@ const styles = StyleSheet.create({
     borderColor: "#E5E7EB",
     borderWidth: 1,
   },
+  icon: {
+    marginRight: 10,
+  },
+  eyeIconContainer: {
+    marginLeft: 15, // Espaçamento entre o campo de texto e o ícone do olho
+    marginRight: -15,
+  },
   inputText: {
-    paddingLeft: 10,
-    width: "100%",
+    flex: 10,
     fontWeight: "bold",
     color: "#828385",
   },
-  leftIcon: {
-    marginRight: 10, // Espaço entre o ícone e o campo de texto
-  },
-  eyeIconContainer: {
-    marginLeft: 10,
-    padding: 5, // Para aumentar a área clicável
-  },
-  icon: {
-    marginLeft: 10, // Adiciona espaço entre os ícones
-  },
 });
-
 export default styles;

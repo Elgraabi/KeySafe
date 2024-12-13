@@ -29,7 +29,7 @@ export default function Button({ title, className, ...rest }: ButtonProps) {
     styleText = { ...styles.deletButtonText };
   } else if (className === "cancelModal") {
     styleText = { ...styles.textCancelModal };
-  } else if (className === "alterar" as keyof typeof styles) {
+  } else if (className === ("alterar" as keyof typeof styles)) {
     styleText = { ...styles.textAlterar };
   } else {
     styleText = { ...styles.buttonText };
