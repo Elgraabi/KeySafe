@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, Modal, Text, View } from "react-native";
+import { Alert, Image, Modal, Text, View } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -15,23 +15,48 @@ type EditProfileParamsList = NativeStackNavigationProp<
   "EditProfile"
 >;
 
-type Data = {
-  title: string;
-  createdAt: string;
-  id: string;
-  username: string;
-  password: string;
-};
-
-type CardProps = {
-  data: Data;
-};
-
-export default function EditProfileScreen({ data }: CardProps) {
+export default function EditProfileScreen() {
   const navigation = useNavigation<EditProfileParamsList>();
   const [visibleModal, setVisibleModal] = useState(false);
   const [visibleModalEdit, setVisibleModalEdit] = useState(false);
   const [visibleModalDel, setVisibleModalDel] = useState(false);
+
+  const [userData, setUserData] = useState({
+    name: "Usuário Exemplo",
+    email: "usuario@email.com",
+    password: "********",
+  });
+
+  const handleUpdatePassword = (newPassword: string) => {
+    setUserData({ ...userData, password: newPassword });
+    Alert.alert("Sucesso!", "Senha atualizada com sucesso.");
+    setVisibleModal(false);
+  };
+
+  const handleEditProfile = (newName: string, newEmail: string) => {
+    setUserData({ ...userData, name: newName, email: newEmail });
+    Alert.alert("Sucesso!", "Perfil atualizado com sucesso.");
+    setVisibleModalEdit(false);
+  };
+
+  const handleDeleteProfile = () => {
+    Alert.alert("Confirmação", "Deseja realmente deletar este usuário?", [
+      {
+        text: "Cancelar",
+        style: "cancel",
+        onPress: () => setVisibleModalDel(false),
+      },
+      {
+        text: "Deletar",
+        style: "destructive",
+        onPress: () => {
+          Alert.alert("Usuário deletado", "O perfil foi deletado com sucesso.");
+          setVisibleModalDel(false);
+          navigation.navigate("Welcome");
+        },
+      },
+    ]);
+  };
 
   return (
     <View style={styles.container}>
@@ -55,10 +80,14 @@ export default function EditProfileScreen({ data }: CardProps) {
           onPress={() => navigation.goBack()}
         />
       </View>
-      <Input title="Nome completo" iconName="user" />
-      <Input title="E-mail" iconName="envelope-o" />
-      <Input title="E-mail de recuperação" iconName="envelope-o" />
-      <Input title="Senha" iconName="lock" secureTextEntry={true} />
+      <Input title={userData.name} iconName="user" editable={false} />
+      <Input title={userData.email} iconName="envelope-o" editable={false} />
+      <Input
+        title="Senha"
+        iconName="lock"
+        editable={false}
+        secureTextEntry={true}
+      />
 
       <View style={styles.buttons}>
         <Button
@@ -112,26 +141,25 @@ export default function EditProfileScreen({ data }: CardProps) {
               <View style={styles.inputContainer}>
                 <InputModal
                   iconName=""
-                  placeHolder="Senha"
+                  placeHolder="Nova senha"
                   defaultValue=""
                   secureTextEntry={true}
-                />
-              </View>
-
-              {/* Input para a confirmar senha */}
-              <View style={styles.inputContainer}>
-                <InputModal
-                  iconName=""
-                  placeHolder="Confirmar senha"
-                  defaultValue=""
-                  secureTextEntry={true}
+                  onChangeText={(text) => handleUpdatePassword(text)}
                 />
               </View>
 
               {/* Botões */}
               <View style={styles.buttonRow}>
-                <Button title="Cancelar" className="cancelModal" />
-                <Button title="Salvar" className="save" />
+                <Button
+                  title="Cancelar"
+                  className="cancelModal"
+                  onPress={() => setVisibleModal(false)}
+                />
+                <Button
+                  title="Salvar"
+                  className="save"
+                  onPress={() => handleUpdatePassword("novaSenhaExemplo")}
+                />
               </View>
             </View>
           </View>
@@ -167,7 +195,7 @@ export default function EditProfileScreen({ data }: CardProps) {
                 <InputModalEditar
                   iconName="user"
                   placeHolder="Nome completo"
-                  defaultValue=""
+                  defaultValue={userData.name}
                 />
               </View>
 
@@ -176,7 +204,7 @@ export default function EditProfileScreen({ data }: CardProps) {
                 <InputModalEditar
                   iconName="envelope-o"
                   placeHolder="E-mail"
-                  defaultValue=""
+                  defaultValue={userData.email}
                 />
               </View>
 
@@ -193,8 +221,18 @@ export default function EditProfileScreen({ data }: CardProps) {
 
               {/* Botões */}
               <View style={styles.buttonRow}>
-                <Button title="Cancelar" className="cancelModal" />
-                <Button title="Salvar" className="save" />
+                <Button
+                  title="Cancelar"
+                  className="cancelModal"
+                  onPress={() => setVisibleModalEdit(false)}
+                />
+                <Button
+                  title="Salvar"
+                  className="save"
+                  onPress={() =>
+                    handleEditProfile("Novo Nome", "novo@email.com")
+                  }
+                />
               </View>
             </View>
           </View>
@@ -232,7 +270,11 @@ export default function EditProfileScreen({ data }: CardProps) {
               {/* Botões */}
               <View style={styles.buttonRow}>
                 <Button title="Cancelar" className="cancel" />
-                <Button title="Deletar" className="delet" />
+                <Button
+                  title="Deletar"
+                  className="delet"
+                  onPress={handleDeleteProfile}
+                />
               </View>
             </View>
           </View>

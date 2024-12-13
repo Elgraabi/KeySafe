@@ -11,7 +11,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Data = {
   title: string;
-  createdAt: string;
   id: string;
   username: string;
   password: string;
