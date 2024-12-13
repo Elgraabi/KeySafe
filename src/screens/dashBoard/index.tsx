@@ -1,15 +1,15 @@
-import { FlatList, Image, Modal, Text, View } from "react-native";
+import { Alert, FlatList, Image, Modal, Text, View } from "react-native";
 import styles from "./styles";
 import Input from "../../components/inputs/input";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RoutesParams } from "../../navigation/routesParams";
 import { useNavigation } from "@react-navigation/native";
-import keys from "../../mock/keys";
 import Card from "../../components/cards/card";
 import ButtonCircle from "../../components/buttons/buttonCircle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputModal from "../../components/inputs/inputModal";
 import Button from "../../components/buttons/button";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type DashBoardParamsList = NativeStackNavigationProp<RoutesParams, "DashBoard">;
 
@@ -27,17 +27,72 @@ type CardProps = {
 
 export default function DashBoardScreen({ data }: CardProps) {
   const navigation = useNavigation<DashBoardParamsList>();
+
+  const [newTitle, setNewTitle] = useState("");
+  const [newUsername, setNewUsername] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+
+  const handleAddPassword = async () => {
+    if (!newTitle || !newUsername || !newPassword) {
+      Alert.alert("Erro", "Preencha todos os campos.");
+      return;
+    }
+
+    const newPasswordData = {
+      id: Date.now(), // Ou use uuidv4()
+      title: newTitle,
+      username: newUsername,
+      password: newPassword,
+      createdAt: new Date().toISOString(),
+    };
+
+    try {
+      const storedPasswords = await AsyncStorage.getItem("passwords");
+      const passwordsList = storedPasswords ? JSON.parse(storedPasswords) : [];
+      passwordsList.push(newPasswordData);
+      await AsyncStorage.setItem("passwords", JSON.stringify(passwordsList));
+      fetchPasswords(); // Atualiza a lista exibida
+      setVisibleModal(false); // Fecha o modal
+      setNewTitle("");
+      setNewUsername("");
+      setNewPassword("");
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível salvar a senha.");
+    }
+  };
+
   const [visibleModal, setVisibleModal] = useState(false);
 
+  const [passwords, setPasswords] = useState<Data[]>([]); // Estado para as senhas
+  const [filteredPasswords, setFilteredPasswords] = useState<Data[]>([]); // Senhas filtradas
+
+  // Função para buscar senhas do AsyncStorage
+  const fetchPasswords = async () => {
+    try {
+      const storedPasswords = await AsyncStorage.getItem("passwords");
+      const parsedPasswords = storedPasswords
+        ? JSON.parse(storedPasswords)
+        : [];
+      setPasswords(parsedPasswords);
+      setFilteredPasswords(parsedPasswords); // Inicializa com todas as senhas
+    } catch (error) {
+      console.error("Erro ao buscar senhas:", error);
+    }
+  };
+
+  // Buscar as senhas ao carregar o componente
+  useEffect(() => {
+    fetchPasswords();
+  }, []);
+
   const [searchText, setSearchText] = useState(""); // Estado para o texto de busca
-  const [filteredKeys, setFilteredKeys] = useState(keys); // Estado para itens filtrados
-  // Função para filtrar os dados
+
   const handleSearch = (text: string) => {
     setSearchText(text);
-    const filtered = keys.filter((key) =>
-      key.title.toLowerCase().includes(text.toLowerCase())
+    const filtered = passwords.filter((password) =>
+      password.title.toLowerCase().includes(text.toLowerCase())
     );
-    setFilteredKeys(filtered);
+    setFilteredPasswords(filtered);
   };
 
   return (
@@ -76,16 +131,11 @@ export default function DashBoardScreen({ data }: CardProps) {
 
       <View style={styles.container}>
         <FlatList
-          data={filteredKeys}
+          data={filteredPasswords}
           keyExtractor={(item) => item.id.toString()} // A chave é convertida para string
           renderItem={({ item }) => (
             <View id={item.id.toString()}>
-              <Card
-                data={{
-                  ...item,
-                  id: item.id.toString(), // Garantindo que o id seja tratado como string
-                }}
-              />
+              <Card data={item} onDelete={fetchPasswords} />
             </View>
           )}
         />
@@ -125,12 +175,22 @@ export default function DashBoardScreen({ data }: CardProps) {
 
             {/* Input para o título */}
             <View style={styles.inputContainer}>
-              <InputModal iconName="" placeHolder="Título" />
+              <InputModal
+                iconName=""
+                placeHolder="Título"
+                value={newTitle}
+                onChangeText={setNewTitle}
+              />
             </View>
 
             {/* Input para o username */}
             <View style={styles.inputContainer}>
-              <InputModal iconName="" placeHolder="Usuário" />
+              <InputModal
+                iconName=""
+                placeHolder="Usuário"
+                value={newUsername}
+                onChangeText={setNewUsername}
+              />
             </View>
 
             {/* Input para a senha */}
@@ -138,15 +198,24 @@ export default function DashBoardScreen({ data }: CardProps) {
               <InputModal
                 iconName=""
                 placeHolder="Senha"
-                defaultValue=""
+                value={newPassword}
+                onChangeText={setNewPassword}
                 secureTextEntry={true}
               />
             </View>
 
             {/* Botões */}
             <View style={styles.buttonRow}>
-              <Button title="Cancelar" className="cancelModal" />
-              <Button title="Salvar" className="save" />
+              <Button
+                title="Cancelar"
+                className="cancelModal"
+                onPress={() => setVisibleModal(false)}
+              />
+              <Button
+                title="Salvar"
+                className="save"
+                onPress={handleAddPassword}
+              />
             </View>
           </View>
         </View>

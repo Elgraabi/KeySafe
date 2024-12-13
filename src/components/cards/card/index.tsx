@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Alert, Modal, Pressable, Text, TextInput, View } from "react-native";
+import { Alert, Modal, Pressable, Text, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import styles from "./styles";
 import ButtonCircle from "../../buttons/buttonCircle";
 import InputModal from "../../inputs/inputModal";
 import Button from "../../buttons/button";
-import * as Clipboard from "expo-clipboard"; // Importando o módulo de Clipboard
+import * as Clipboard from "expo-clipboard";
 import InputModalNovaSenha from "../../inputs/inputModalNovaSenh";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Data = {
   title: string;
@@ -18,17 +19,62 @@ type Data = {
 
 type CardProps = {
   data: Data;
+  onDelete: () => void;
 };
 
-export default function Card({ data }: CardProps) {
+export default function Card({ data, onDelete }: CardProps) {
   const [visibleModal, setVisibleModal] = useState(false);
+  const [editedData, setEditedData] = useState(data);
 
   const copyToClipboard = (text: string) => {
-    Clipboard.setStringAsync(text); // Copia o texto para a área de transferência
+    Clipboard.setStringAsync(text);
     Alert.alert(
       "Copiado",
       "O e-mail foi copiado para a área de transferência."
     );
+  };
+
+  const handleSave = async () => {
+    if (!editedData.title || !editedData.username || !editedData.password) {
+      Alert.alert("Erro", "Título, username e senha são obrigatórios.");
+      return;
+    }
+
+    try {
+      const storedPasswords = await AsyncStorage.getItem("passwords");
+      const passwords = storedPasswords ? JSON.parse(storedPasswords) : [];
+
+      // Atualiza ou adiciona a senha no AsyncStorage
+      const updatedPasswords = passwords.map((item: Data) =>
+        item.id === editedData.id ? editedData : item
+      );
+
+      if (!updatedPasswords.find((item: Data) => item.id === editedData.id)) {
+        updatedPasswords.push(editedData);
+      }
+
+      await AsyncStorage.setItem("passwords", JSON.stringify(updatedPasswords));
+      Alert.alert("Sucesso", "Senha salva com sucesso!");
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível salvar a senha.");
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      const storedPasswords = await AsyncStorage.getItem("passwords");
+      const passwords = storedPasswords ? JSON.parse(storedPasswords) : [];
+
+      const updatedPasswords = passwords.filter(
+        (item: Data) => item.id !== data.id
+      );
+      await AsyncStorage.setItem("passwords", JSON.stringify(updatedPasswords));
+
+      Alert.alert("Sucesso", "Senha excluída com sucesso!");
+      setVisibleModal(false); // Fecha o modal após excluir
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível excluir a senha.");
+    }
   };
 
   return (
@@ -40,7 +86,7 @@ export default function Card({ data }: CardProps) {
         </Pressable>
       </View>
 
-      {/* Modal */}
+      {/* Modal detalhes da senha*/}
       <Modal
         visible={visibleModal}
         transparent={true}
@@ -67,34 +113,47 @@ export default function Card({ data }: CardProps) {
 
             {/* Input para o título */}
             <View style={styles.inputContainer}>
-              <InputModal iconName="" defaultValue={data.title}></InputModal>
+              <InputModal
+                iconName=""
+                defaultValue={editedData.title}
+                onChangeText={(text) =>
+                  setEditedData({ ...editedData, title: text })
+                }
+              ></InputModal>
             </View>
 
             {/* Input para o username */}
             <View style={styles.inputContainer}>
               <InputModalNovaSenha
                 iconName="clipboard"
-                defaultValue={data.username}
-                onIconPress={() => copyToClipboard(data.username)} // Função para copiar o e-mail
+                defaultValue={editedData.username}
+                onIconPress={() => copyToClipboard(editedData.username)}
+                onChangeText={(text) =>
+                  setEditedData({ ...editedData, username: text })
+                }
               ></InputModalNovaSenha>
             </View>
 
             {/* Input para a senha */}
             <View style={styles.inputContainer}>
               <InputModal
-                iconName="eye"
-                defaultValue={data.password}
+                iconName=""
+                defaultValue={editedData.password}
+                secureTextEntry={true}
+                onChangeText={(text) =>
+                  setEditedData({ ...editedData, password: text })
+                }
               ></InputModal>
             </View>
 
             {/* Botões */}
             <View style={styles.buttonRow}>
-              <Button title="Salvar" className="save">
-                {" "}
-              </Button>
-              <Button title="Excluir" className="delet">
-                {" "}
-              </Button>
+              <Button title="Salvar" className="save" onPress={handleSave} />
+              <Button
+                title="Excluir"
+                className="delet"
+                onPress={handleDelete}
+              />
             </View>
           </View>
         </View>
