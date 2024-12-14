@@ -12,13 +12,13 @@ type InputProps = TextInputProps & {
   iconName: string;
   placeHolder?: string;
   defaultValue?: string;
-  isPassword?: boolean; // Adiciona uma prop para identificar campos de senha
+  secureTextEntry?: boolean; // Adiciona uma prop para identificar campos de senha
 };
 export default function InputModal({
   iconName,
   placeHolder,
   defaultValue,
-  isPassword = false,
+  secureTextEntry = false,
   ...rest
 }: InputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -29,10 +29,10 @@ export default function InputModal({
         style={styles.inputText}
         defaultValue={defaultValue}
         placeholder={placeHolder}
-        secureTextEntry={isPassword && !isPasswordVisible} // Altera visibilidade da senha
+        secureTextEntry={secureTextEntry && !isPasswordVisible} // Altera visibilidade da senha
         {...rest}
       />
-      {isPassword && (
+      {secureTextEntry && (
         <TouchableOpacity
           onPress={() => setIsPasswordVisible(!isPasswordVisible)}
           style={styles.eyeIconContainer} // Estilo para posicionar o ícone do olho

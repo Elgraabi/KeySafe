@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Image, Modal, Text, View } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
@@ -22,10 +22,28 @@ export default function EditProfileScreen() {
   const [visibleModalDel, setVisibleModalDel] = useState(false);
 
   const [userData, setUserData] = useState({
-    name: "Usuário Exemplo",
-    email: "usuario@email.com",
-    password: "********",
+    name: "",
+    email: "",
+    password: "",
   });
+
+  const [editData, setEditData] = useState(userData);
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const user = {
+        name: "João da Silva",
+        email: "joao@gmail.com",
+        password: "123456",
+      };
+      setUserData(user);
+      setEditData(user); // Atualiza os dados para edição
+    };
+
+    fetchUserData();
+  }, []);
 
   const handleUpdatePassword = (newPassword: string) => {
     setUserData({ ...userData, password: newPassword });
@@ -33,8 +51,8 @@ export default function EditProfileScreen() {
     setVisibleModal(false);
   };
 
-  const handleEditProfile = (newName: string, newEmail: string) => {
-    setUserData({ ...userData, name: newName, email: newEmail });
+  const handleEditProfile = () => {
+    setUserData(editData); // Salva os dados editados no estado principal
     Alert.alert("Sucesso!", "Perfil atualizado com sucesso.");
     setVisibleModalEdit(false);
   };
@@ -83,19 +101,13 @@ export default function EditProfileScreen() {
       <Input title={userData.name} iconName="user" editable={false} />
       <Input title={userData.email} iconName="envelope-o" editable={false} />
       <Input
-        title="Senha"
+        title={userData.password}
         iconName="lock"
         editable={false}
-        secureTextEntry={true}
+        secureTextEntry={!isPasswordVisible}
       />
 
       <View style={styles.buttons}>
-        <Button
-          title="Alterar senha"
-          className="alterar"
-          onPress={() => setVisibleModal(true)}
-          style={styles.buttonAlterar} // Estilo do botão Alterar senha
-        />
         <Button
           title="Editar perfil"
           className="editarPerf"
@@ -111,59 +123,6 @@ export default function EditProfileScreen() {
             style={styles.buttonExcluir}
           />
         </View>
-
-        {/* Modal atualizar senha */}
-        <Modal
-          visible={visibleModal}
-          transparent={true}
-          animationType="slide"
-          onRequestClose={() => setVisibleModal(false)} // Fecha a modal
-        >
-          <View style={styles.modalOverlay}>
-            <View style={styles.modalContainer}>
-              <View
-                style={{
-                  alignItems: "center",
-                  flexDirection: "row",
-                  margin: 30,
-                  marginRight: 130,
-                }}
-              >
-                <ButtonCircle
-                  className="return"
-                  iconName="arrow-left"
-                  onPress={() => setVisibleModal(false)} // Fecha a modal ao pressionar o ícone de voltar
-                />
-                <Text style={styles.modalTitle}>Atualizar senha</Text>
-              </View>
-
-              {/* Input para a senha */}
-              <View style={styles.inputContainer}>
-                <InputModal
-                  iconName=""
-                  placeHolder="Nova senha"
-                  defaultValue=""
-                  secureTextEntry={true}
-                  onChangeText={(text) => handleUpdatePassword(text)}
-                />
-              </View>
-
-              {/* Botões */}
-              <View style={styles.buttonRow}>
-                <Button
-                  title="Cancelar"
-                  className="cancelModal"
-                  onPress={() => setVisibleModal(false)}
-                />
-                <Button
-                  title="Salvar"
-                  className="save"
-                  onPress={() => handleUpdatePassword("novaSenhaExemplo")}
-                />
-              </View>
-            </View>
-          </View>
-        </Modal>
 
         {/* Modal editar perfil */}
         <Modal
@@ -196,6 +155,9 @@ export default function EditProfileScreen() {
                   iconName="user"
                   placeHolder="Nome completo"
                   defaultValue={userData.name}
+                  onChangeText={(text) =>
+                    setEditData((prev) => ({ ...prev, name: text }))
+                  }
                 />
               </View>
 
@@ -205,6 +167,9 @@ export default function EditProfileScreen() {
                   iconName="envelope-o"
                   placeHolder="E-mail"
                   defaultValue={userData.email}
+                  onChangeText={(text) =>
+                    setEditData((prev) => ({ ...prev, email: text }))
+                  }
                 />
               </View>
 
@@ -213,9 +178,11 @@ export default function EditProfileScreen() {
                 <InputModalEditar
                   iconName="lock"
                   placeHolder="Senha"
-                  isPassword={true}
-                  defaultValue=""
+                  defaultValue={editData.password}
                   secureTextEntry={true}
+                  onChangeText={(text) =>
+                    setEditData((prev) => ({ ...prev, password: text }))
+                  }
                 />
               </View>
 
@@ -229,9 +196,7 @@ export default function EditProfileScreen() {
                 <Button
                   title="Salvar"
                   className="save"
-                  onPress={() =>
-                    handleEditProfile("Novo Nome", "novo@email.com")
-                  }
+                  onPress={handleEditProfile}
                 />
               </View>
             </View>
