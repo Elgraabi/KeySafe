@@ -107,7 +107,7 @@ export default function EditProfileScreen() {
           <Button
             title="Excluir perfil"
             className="delet"
-            onPress={() => setVisibleModalDel(true)}
+            onPress={handleDeleteProfile}
             style={styles.buttonExcluir}
           />
         </View>
