@@ -12,6 +12,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RoutesParams } from "../../navigation/routesParams";
 import Checkbox from "expo-checkbox";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import ButtonCircle from "../../components/buttons/buttonCircle";
 
 type LoginParamsList = NativeStackNavigationProp<RoutesParams, "Login">;
 
@@ -57,6 +58,13 @@ export default function LoginScreen() {
         <Text style={styles.textTitle}>KeySafe</Text>
         <Text style={styles.textTitleL}>Login</Text>
       </View>
+
+      {/* Botão de retorno */}
+      <ButtonCircle
+        className="return"
+        iconName="arrow-left"
+        onPress={() => navigation.goBack()}
+      />
 
       <Formik
         initialValues={{ username: "", password: "", keepConnected: false }}
